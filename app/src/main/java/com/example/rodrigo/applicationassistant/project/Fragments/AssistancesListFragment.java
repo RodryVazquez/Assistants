@@ -12,6 +12,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.rodrigo.applicationassistant.R;
+import com.example.rodrigo.applicationassistant.project.Adapters.AssistanceAdapter;
+import com.example.rodrigo.applicationassistant.project.Models.AssistanceModel;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -47,7 +52,8 @@ public class AssistancesListFragment extends Fragment {
         assistanceView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
 
         //TODO setar adapter a assistanceView
-
+        AssistanceAdapter assistanceAdapter = new AssistanceAdapter(setData());
+        assistanceView.setAdapter(assistanceAdapter);
 
         FloatingActionButton fab = (FloatingActionButton) getActivity().findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -57,5 +63,28 @@ public class AssistancesListFragment extends Fragment {
                         .setAction("Action", null).show();
             }
         });
+    }
+
+    /**
+     *
+     * @return
+     */
+    public List<AssistanceModel> setData()
+    {
+        List<AssistanceModel>assistanceModels = new ArrayList<>();
+        assistanceModels.add(new AssistanceModel("Rodry vazquez","Calle 23 #1519",1,"Rodrigo.vazquez@intelectix.com","TODO","TODO",true,"asdasd"));
+        assistanceModels.add(new AssistanceModel("Rodry vazquez","Calle 23 #1519",1,"Rodrigo.vazquez@intelectix.com","TODO","TODO",true,"asdasd"));
+        assistanceModels.add(new AssistanceModel("Rodry vazquez","Calle 23 #1519",1,"Rodrigo.vazquez@intelectix.com","TODO","TODO",true,"asdasd"));
+        assistanceModels.add(new AssistanceModel("Rodry vazquez","Calle 23 #1519",1,"Rodrigo.vazquez@intelectix.com","TODO","TODO",true,"asdasd"));
+        assistanceModels.add(new AssistanceModel("Rodry vazquez","Calle 23 #1519",1,"Rodrigo.vazquez@intelectix.com","TODO","TODO",true,"asdasd"));
+        assistanceModels.add(new AssistanceModel("Rodry vazquez","Calle 23 #1519",1,"Rodrigo.vazquez@intelectix.com","TODO","TODO",true,"asdasd"));
+        assistanceModels.add(new AssistanceModel("Rodry vazquez","Calle 23 #1519",1,"Rodrigo.vazquez@intelectix.com","TODO","TODO",true,"asdasd"));
+        assistanceModels.add(new AssistanceModel("Rodry vazquez","Calle 23 #1519",1,"Rodrigo.vazquez@intelectix.com","TODO","TODO",true,"asdasd"));
+        assistanceModels.add(new AssistanceModel("Rodry vazquez","Calle 23 #1519",1,"Rodrigo.vazquez@intelectix.com","TODO","TODO",true,"asdasd"));
+        assistanceModels.add(new AssistanceModel("Rodry vazquez","Calle 23 #1519",1,"Rodrigo.vazquez@intelectix.com","TODO","TODO",true,"asdasd"));
+        assistanceModels.add(new AssistanceModel("Rodry vazquez","Calle 23 #1519",1,"Rodrigo.vazquez@intelectix.com","TODO","TODO",true,"asdasd"));
+
+        return assistanceModels;
+
     }
 }

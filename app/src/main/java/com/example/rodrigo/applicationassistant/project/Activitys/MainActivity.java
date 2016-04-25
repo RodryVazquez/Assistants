@@ -30,7 +30,6 @@ public class MainActivity extends AppCompatActivity
     private static  final String TAG="MainActivity";
     private UserPreferences userPreferences;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,7 +61,6 @@ public class MainActivity extends AppCompatActivity
             MenuItem item = navigationView.getMenu().getItem(0);
             onNavigationItemSelected(item);
         }
-
     }
 
     /**
@@ -126,7 +124,8 @@ public class MainActivity extends AppCompatActivity
             fragmentManager.beginTransaction()
                     .replace(R.id.container, fragment).commit();
             item.setChecked(true);
-            getSupportActionBar().setTitle(item.getTitle());
+
+            //getSupportActionBar().setTitle(item.getTitle());
 
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
             drawer.closeDrawer(GravityCompat.START);

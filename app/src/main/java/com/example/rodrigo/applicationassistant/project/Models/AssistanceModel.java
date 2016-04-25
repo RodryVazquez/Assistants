@@ -8,6 +8,7 @@ import com.orm.SugarRecord;
 public class AssistanceModel extends SugarRecord {
 
     int userId;
+    String assistantName;
     String address;
     int phoneNumber;
     String email;
@@ -28,7 +29,8 @@ public class AssistanceModel extends SugarRecord {
      * @param active
      * @param userSectionId
      */
-    public AssistanceModel(String address, int phoneNumber, String email, String comments, String registerDateTimeStamp, boolean active, String userSectionId){
+    public AssistanceModel(String assistantName, String address, int phoneNumber, String email, String comments, String registerDateTimeStamp, boolean active, String userSectionId){
+        this.assistantName = assistantName;
         this.address = address;
         this.phoneNumber = phoneNumber;
         this.email = email;
@@ -38,6 +40,13 @@ public class AssistanceModel extends SugarRecord {
         this.userSectionId = userSectionId;
     }
 
+    public String getAssistantName() {
+        return assistantName;
+    }
+
+    public void setAssistantName(String assistantName) {
+        this.assistantName = assistantName;
+    }
 
     public int getUserId() {
         return userId;
