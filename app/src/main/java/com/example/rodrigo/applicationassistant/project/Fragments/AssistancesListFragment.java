@@ -5,8 +5,12 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +27,7 @@ import java.util.List;
  */
 public class AssistancesListFragment extends Fragment {
 
+    //
     private RecyclerView assistanceView;
 
     /**
@@ -47,15 +52,34 @@ public class AssistancesListFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        //Obtenemos la refecncia del toolbar y asignamos su titulo
+        Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.mainToolbar);
+        toolbar.setTitle("Asistentes");
+
+        //Habiliatmos las opciones del action bar
+        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        //Obtenemos la referencia del drawer y habilitamos el click en el tolbar para el navigationView
+        DrawerLayout drawer = (DrawerLayout)getActivity().findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                getActivity(), drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.setDrawerIndicatorEnabled(true);
+        toggle.syncState();
+
+        //RecyclerView
         assistanceView = (RecyclerView)getActivity().findViewById(R.id.lstAssistances);
         assistanceView.setHasFixedSize(true);
         assistanceView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
 
-        //TODO setar adapter a assistanceView
+        //Asignamos el adapter al recyclerView
         AssistanceAdapter assistanceAdapter = new AssistanceAdapter(setData());
         assistanceView.setAdapter(assistanceAdapter);
 
-        FloatingActionButton fab = (FloatingActionButton) getActivity().findViewById(R.id.fab);
+        //Referenciamos al floatActionButton de la vista
+        FloatingActionButton fab = (FloatingActionButton) getActivity().findViewById(R.id.fltSyncronize);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
