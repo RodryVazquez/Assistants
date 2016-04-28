@@ -68,7 +68,6 @@ public class AssistanceAdapter extends RecyclerView.Adapter<AssistanceAdapter.As
         private TextView txtNameUser;
         private TextView txtAddress;
         private TextView txtPhoneNumber;
-        private TextView txtDateTimeStamp;
 
         /**
          *
@@ -79,7 +78,6 @@ public class AssistanceAdapter extends RecyclerView.Adapter<AssistanceAdapter.As
             txtNameUser = (TextView)itemView.findViewById(R.id.txtCompleteName);
             txtAddress = (TextView)itemView.findViewById(R.id.txtAddress);
             txtPhoneNumber = (TextView)itemView.findViewById(R.id.txtPhoneNumber);
-            txtDateTimeStamp = (TextView)itemView.findViewById(R.id.txtDatetimeRecord);
         }
 
         /**
@@ -90,7 +88,6 @@ public class AssistanceAdapter extends RecyclerView.Adapter<AssistanceAdapter.As
             txtNameUser.setText(assistanceModel.getAssistantName());
             txtAddress.setText(assistanceModel.getAddress());
             txtPhoneNumber.setText(String.valueOf(assistanceModel.getPhoneNumber()));
-            txtDateTimeStamp.setText(assistanceModel.getRegisterDateTimeStamp());
         }
     }
 
