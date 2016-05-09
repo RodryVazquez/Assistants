@@ -33,6 +33,8 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -54,14 +56,17 @@ public class LoginActivity extends AppCompatActivity {
     private EditText mEmailView, mPasswordView;
     private TextInputLayout mInputEmail, mInputPassword;
     private Button mEmailSignInButton;
-    private Toolbar tolbar;
+    private ScrollView loginForm;
+    private ProgressBar loginProgress;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        tolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(tolbar);
+
+        loginForm = (ScrollView) findViewById(R.id.login_form);
+        loginProgress = (ProgressBar) findViewById(R.id.login_progress);
         mInputEmail = (TextInputLayout) findViewById(R.id.inputEmail);
         mInputPassword = (TextInputLayout) findViewById(R.id.inputPassword);
         mEmailView = (EditText) findViewById(R.id.email);
@@ -81,8 +86,8 @@ public class LoginActivity extends AppCompatActivity {
 
         UserPreferences userPreferences = new UserPreferences(LoginActivity.this);
         //Verificamos si el usuario esta logueado]
-        if(!userPreferences.isFirstTime()){
-            Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+        if (!userPreferences.isFirstTime()) {
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);
             finish();
         }
@@ -98,7 +103,10 @@ public class LoginActivity extends AppCompatActivity {
         if (!validatePassword()) {
             return;
         }
-        new UserService(LoginActivity.this).loginUser(mEmailView.getText().toString(), mPasswordView.getText().toString());
+        new UserService(LoginActivity.this).loginUser(mEmailView.getText().toString(),
+                mPasswordView.getText().toString(),
+                loginForm,
+                loginProgress);
     }
 
     //
@@ -153,6 +161,7 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         public void afterTextChanged(Editable editable) {
+
             switch (view.getId()) {
                 case R.id.email:
                     validateEmail();

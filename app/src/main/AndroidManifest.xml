@@ -29,8 +29,7 @@
             android:value="com.example.rodrigo.applicationassistant" />
 
         <activity
-            android:name=".project.LoginActivity"
-            android:label="@string/title_activity_login">
+            android:name=".project.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -42,7 +41,6 @@
         <activity
             android:name=".project.Activitys.MainActivity"
             android:label="@string/app_name"
-            android:windowSoftInputMode="stateVisible|adjustResize"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>
 

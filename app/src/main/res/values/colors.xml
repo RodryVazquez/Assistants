@@ -15,6 +15,8 @@
     <color name="blue800">#1565C0</color>
 
     <color name="hint">#9D9D9D</color>
+    <color name="hint_two">#424242</color>
+    <color name="hint_three">#F5F5F5</color>
     <color name="editTextColor">#DBDBDB</color>
     <color name="createColorBackground">#EEEEEE</color>
 

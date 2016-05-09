@@ -1,11 +1,16 @@
 package com.example.rodrigo.applicationassistant.project.Service;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.service.voice.VoiceInteractionSession;
 import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.ScrollView;
 import android.widget.Toast;
 
 import com.android.volley.NetworkResponse;
@@ -47,12 +52,10 @@ public class UserService {
      * @param email
      * @param password
      */
-    public void loginUser(String email, String password) {
+    public void loginUser(String email, String password, final ScrollView loginForm, final ProgressBar loginProgress) {
 
-        final ProgressDialog progressDialog = new ProgressDialog(context);
-        progressDialog.setCancelable(false);
-        progressDialog.setMessage("Validando usuario");
-        progressDialog.show();
+        loginForm.setVisibility(View.GONE);
+        loginProgress.setVisibility(View.VISIBLE);
 
         JSONObject jsonObject = new JSONObject();
         try {
@@ -109,9 +112,8 @@ public class UserService {
                                 } else {
                                     Toast.makeText(context, error.getMessage(), Toast.LENGTH_SHORT).show();
                                 }
-                                if (progressDialog != null && progressDialog.isShowing()) {
-                                    progressDialog.dismiss();
-                                }
+                                loginProgress.setVisibility(View.GONE);
+                                loginForm.setVisibility(View.VISIBLE);
                             }
                         });
         AppController.getInstance().addToRequestQueue(request);
